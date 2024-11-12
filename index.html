@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career and Social Life Queries</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Popup Style */
+        #thank-you-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #thank-you-popup button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Overlay Background */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Career & Social Life Query Help</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#submit-query">Submit Query</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="submit-query">
+            <h2>Submit Your Query</h2>
+            <!-- Formspree Integration -->
+            <form action="https://formspree.io/f/meoqkzqp" method="POST" id="query-form">
+                <!-- Input Fields -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                
+                <label for="query">Your Query:</label><br>
+                <textarea id="query" name="query" required></textarea><br>
+                
+                <button type="submit">Submit Query</button>
+            </form>
+
+            <!-- Pre-Submission Message -->
+            <div id="pre-submit-message">
+                <p>Have a query regarding your career or social life? We’re here to help! Please fill out the form, and we’ll get back to you within 1 day.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feel free to reach out to us via email:</p>
+            <p><a href="mailto:rutiktetare2903@gmail.com">rutiktetare2903@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Career and Social Life Queries</p>
+    </footer>
+
+    <!-- Popup and Overlay -->
+    <div id="overlay"></div>
+    <div id="thank-you-popup">
+        <h2>Thank you for submitting your query!</h2>
+        <p>You will receive an answer within 1 day on your email.</p>
+        <p>We appreciate your trust and will get back to you as soon as possible.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        // Display the popup and redirect after form submission
+        document.getElementById("query-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var form = this;
+
+            // Hide the form and show the popup
+            form.style.display = "none";
+            document.getElementById("pre-submit-message").style.display = "none";  // Hide pre-submit message
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("thank-you-popup").style.display = "block";
+
+            // Redirect to top of the page (Home)
+            setTimeout(function() {
+                window.scrollTo(0, 0); // Scroll back to the top
+            }, 500);  // Wait a moment before redirecting
+        });
+
+        // Close the popup
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("thank-you-popup").style.display = "none";
+            location.reload(); // Reload the page to allow submission of another query
+        }
+    </script>
+</body>
+</html>
